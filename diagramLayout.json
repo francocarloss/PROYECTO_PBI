@@ -1,0 +1,126 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 29.762223448406225,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Cirugias",
+          "nodeLineageTag": "6321c739-e229-4071-9ef8-f34fb6a54a0e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 0
+          },
+          "nodeIndex": "Hospital",
+          "nodeLineageTag": "584b1d43-3652-4427-8823-f9db33be84e1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 0
+          },
+          "nodeIndex": "Laboratorios",
+          "nodeLineageTag": "cb6d865d-f9a3-4f87-9e22-96ca2690e68f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 0
+          },
+          "nodeIndex": "Procedimientos",
+          "nodeLineageTag": "d8c4887e-8302-4969-88fc-52ffa9e466ec",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 0
+          },
+          "nodeIndex": "Recetas",
+          "nodeLineageTag": "5c6256d2-2d65-4d19-9011-4aec76c24caa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1445.8112624894395,
+            "y": 0
+          },
+          "nodeIndex": "FACT_Siniestros",
+          "nodeLineageTag": "249f9ea6-b60c-4401-8b49-ca84ea5a63f8",
+          "size": {
+            "height": 305.99510432509004,
+            "width": 346.19255608583433
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 863.65278097509008,
+            "y": 804.88287731902778
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "c3481b33-b86d-4a58-8109-100d1d4271ee",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 763.85321970640848,
+            "y": 391.05862163181274
+          },
+          "nodeIndex": "DIM_Tiempo",
+          "nodeLineageTag": "6f785c17-c117-48eb-9e6a-dddc34225cb2",
+          "size": {
+            "height": 302.72300669321726,
+            "width": 279.1958876747899
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 56.447393005377734,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

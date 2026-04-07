@@ -1,0 +1,202 @@
+table DIM_Tiempo
+	lineageTag: 6f785c17-c117-48eb-9e6a-dddc34225cb2
+
+	column Date
+		formatString: General Date
+		lineageTag: 03ec2b19-c77b-4336-b933-ba58404796f4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variación
+			isDefault
+			relationship: 20d006f8-f0db-4d91-8f9c-92cf9e99abad
+			defaultHierarchy: LocalDateTable_8f15e850-c0d2-4a10-9a65-37f1d5869b26.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año
+		formatString: 0
+		lineageTag: abe71201-2f3c-4163-a483-dcb5c010eea2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Año]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		formatString: 0
+		lineageTag: 96087757-8bba-4b03-b867-8d6d5388b3da
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Mes'
+		lineageTag: 214f4930-4acf-47c2-8ac3-ad66ceadcc48
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nombre Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mes Corto'
+		lineageTag: 49bb96d0-a83f-435f-8528-3073c0cca88d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes Corto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año-Mes
+		lineageTag: 7932a307-5db1-44dc-b8d7-4571c3fd2df1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Año-Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Año-Mes Nombre'
+		lineageTag: 476f7195-2924-4af5-8acc-ce4c498fa14b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Año-Mes Nombre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Día
+		formatString: 0
+		lineageTag: 2b600e10-ce98-4e2f-a468-8c8c9d70b922
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Día]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Día Semana Num'
+		formatString: 0
+		lineageTag: 9715c22a-7711-4677-97da-e0a38a7e3275
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Día Semana Num]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Día Semana Nombre'
+		lineageTag: f70046a6-710d-45ed-a516-9bbc408ce8d5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Día Semana Nombre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Día Semana Corto'
+		lineageTag: 6a16dedb-e35b-46b1-b005-0f5b57a00862
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Día Semana Corto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 07a18a0d-0aa9-4914-b1f5-e44bb0e84bff
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año-Trimestre
+		lineageTag: e18bbbe5-3ba5-433f-b2be-5b664fcd6a3f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Año-Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Num Semana'
+		formatString: 0
+		lineageTag: 2cac56da-7e52-4586-a1bc-42e8438245f3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Num Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Es Fin de Semana'
+		lineageTag: 0ca3ca4f-36ee-4ac8-81b1-2ca205eb190f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Es Fin de Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Es Mes Actual'
+		lineageTag: 61b6ec01-115a-4ea7-9c42-936a9faaaba7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Es Mes Actual]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Orden Mes'
+		formatString: 0
+		lineageTag: e3790d53-4561-4675-a9d2-53a5f41b7811
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Orden Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Orden Trimestre'
+		lineageTag: de982e6c-6230-4b44-8afc-406fb4861bd3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Orden Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Tiempo = calculated
+		mode: import
+		source =
+				
+				VAR MinDate = DATE( 2025, 1, 1 )
+				VAR MaxDate = EOMONTH( TODAY(), 0 )
+				RETURN
+				ADDCOLUMNS(
+				    CALENDAR( MinDate, MaxDate ),
+				
+				    -- ── Año / Mes / Día ───────────────────────────────
+				    "Año",                  YEAR( [Date] ),
+				    "Mes",                  MONTH( [Date] ),
+				    "Nombre Mes",           FORMAT( [Date], "MMMM", "es-GT" ),
+				    "Mes Corto",            FORMAT( [Date], "MMM", "es-GT" ),
+				    "Año-Mes",              FORMAT( [Date], "YYYY-MM" ),
+				    "Año-Mes Nombre",       FORMAT( [Date], "MMM YYYY", "es-GT" ),
+				    "Día",                  DAY( [Date] ),
+				    "Día Semana Num",       WEEKDAY( [Date], 2 ),
+				    "Día Semana Nombre",    FORMAT( [Date], "dddd", "es-GT" ),
+				    "Día Semana Corto",     FORMAT( [Date], "ddd", "es-GT" ),
+				
+				    -- ── Trimestre ─────────────────────────────────────
+				    "Trimestre",            "Q" & FORMAT( [Date], "Q" ),
+				    "Año-Trimestre",        FORMAT( [Date], "YYYY" ) & "-Q" & FORMAT( [Date], "Q" ),
+				
+				    -- ── Semana ────────────────────────────────────────
+				    "Num Semana",           WEEKNUM( [Date], 2 ),
+				
+				    -- ── Flags útiles ──────────────────────────────────
+				    "Es Fin de Semana",     IF( WEEKDAY( [Date], 2 ) >= 6, "Fin de semana", "Día hábil" ),
+				    "Es Mes Actual",        IF( MONTH( [Date] ) = MONTH( TODAY() ) &&
+				                                YEAR( [Date] )  = YEAR( TODAY() ),  "Mes actual", "Histórico" ),
+				
+				    -- ── Orden para ordenar visuales correctamente ─────
+				    "Orden Mes",            YEAR( [Date] ) * 100 + MONTH( [Date] ),
+				    "Orden Trimestre",      YEAR( [Date] ) * 10  + VALUE( FORMAT( [Date], "Q" ) )
+				)
+
+	annotation PBI_Id = 6e02b246d2c74bd1be9154c875676482
+

@@ -1,0 +1,27 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-GT
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DBConnection","Recetas","Laboratorios","Procedimientos","Cirugias","Hospital"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Recetas
+ref table Laboratorios
+ref table Procedimientos
+ref table Cirugias
+ref table Hospital
+ref table FACT_Siniestros
+ref table Medidas
+ref table DIM_Tiempo
+ref table DateTableTemplate_f2635788-2be5-4af5-ae46-666ccd5a6f28
+ref table LocalDateTable_8f15e850-c0d2-4a10-9a65-37f1d5869b26
+
+ref cultureInfo es-ES
+
