@@ -1,7 +1,0 @@
-expression DBConnection = "cam-v2023.c2caa3wlxfj7.us-east-2.rds.amazonaws.com:1521/CAM" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
-	lineageTag: 0e55d21d-013a-4973-ad36-c253388f1f6c
-
-	annotation PBI_NavigationStepName = Navegación
-
-	annotation PBI_ResultType = Text
-
