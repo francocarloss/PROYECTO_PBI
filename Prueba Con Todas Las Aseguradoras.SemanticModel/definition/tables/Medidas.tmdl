@@ -1,0 +1,140 @@
+table Medidas
+	lineageTag: c3481b33-b86d-4a58-8109-100d1d4271ee
+
+	measure 'Total Valor Aprobado' =
+			
+			SUM( FACT_Siniestros[VALOR_APROVADO] )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c463f8b6-8d48-4b67-9c4b-d6454e9dc3cf
+
+	measure 'Total Registros' =
+			
+			COUNTROWS( FACT_Siniestros )
+		formatString: 0
+		lineageTag: 002b19a3-6a07-45c7-a5df-7adece68f1d5
+
+	measure 'Total Cobro Aseguradora' =
+			
+			SUM( FACT_Siniestros[COBRO_ASEGURADORA] )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1afc1a19-98fa-45f8-bbde-b88d95b8718c
+
+	measure 'Total Coaseguro' =
+			
+			SUM( FACT_Siniestros[VALOR_COASEGURO] )
+		lineageTag: 6da2b711-241b-4c70-85c1-7fb277dfb246
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Copago' =
+			
+			SUM( FACT_Siniestros[VALOR_COPAGO] )
+		lineageTag: 92b99216-e2f8-451d-95f3-03df6b93fafc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Deducible' =
+			
+			SUM( FACT_Siniestros[VALOR_DEDUCIBLE] )
+		lineageTag: 114ca399-67c8-477d-89c9-9391761660d2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Conteo Liquidaciones' =
+			
+			DISTINCTCOUNT( FACT_Siniestros[LIQUIDACION] )
+		formatString: #,0
+		lineageTag: 9861002d-2ada-4f28-b483-2a3b90e10f93
+
+	measure 'Conteo Pacientes' =
+			
+			DISTINCTCOUNT( FACT_Siniestros[NOMBRE_PACIENTE] )
+		formatString: 0
+		lineageTag: 70ef08f7-045e-485c-9d8d-e486d0c5bfaf
+
+	measure 'Conteo Pólizas' =
+			
+			DISTINCTCOUNT( FACT_Siniestros[POLIZA] )
+		formatString: 0
+		lineageTag: 8a2d8780-107b-463c-bd27-3c7afdde8fde
+
+	measure 'Conteo Reclamos' =
+			
+			DISTINCTCOUNT( FACT_Siniestros[RECLAMO] )
+		formatString: 0
+		lineageTag: 5dfbac26-1320-4b8e-9a2d-71c79fc396d9
+
+	measure 'Ratio Cobro Aprobado' =
+			
+			DIVIDE(
+			    [Total Cobro Aseguradora],
+			    [Total Valor Aprobado],
+			    0
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 265eb86b-371e-4489-8ff6-38d42800cb94
+
+	measure 'Costo Promedio Paciente' =
+			
+			DIVIDE(
+			    [Total Valor Aprobado],
+			    [Conteo Pacientes],
+			    0
+			)
+		lineageTag: 9dab14cf-9884-4a5f-8957-d68e098d9738
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ticket Promedio' =
+			
+			DIVIDE(
+			    [Total Valor Aprobado],
+			    [Conteo Liquidaciones],
+			    0
+			)
+		lineageTag: 4ff0d091-74e6-42aa-8612-c0a04116fc35
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Frecuencia Uso' =
+			
+			DIVIDE(
+			    [Total Registros],
+			    [Conteo Pacientes],
+			    0
+			)
+		lineageTag: 66b0642e-27d1-4aa9-8849-fdc9fa8c74a4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promedio Dias Hosp' =
+			
+			AVERAGE( FACT_Siniestros[DIAS_HOSPITALIZACION] )
+		lineageTag: df77758d-3990-4646-bdc3-080c2fa31e72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Aprobado General' =
+			
+			CALCULATE(
+			    [Total Valor Aprobado],
+			    ALL( FACT_Siniestros[TIPO_SERVICIO] )
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 9ce4229d-ac64-4ba0-9e15-c459596084ff
+
+	column Temp
+		formatString: 0
+		lineageTag: 74206d3f-8c0a-484f-867b-24e7a339eac8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Temp]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = ROW("Temp", BLANK())
+
+	annotation PBI_Id = 246e20af53984357bfb61576cc453d33
+

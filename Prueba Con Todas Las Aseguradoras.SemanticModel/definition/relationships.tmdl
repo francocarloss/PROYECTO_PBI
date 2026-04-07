@@ -1,0 +1,34 @@
+relationship 20d006f8-f0db-4d91-8f9c-92cf9e99abad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_Tiempo.Date
+	toColumn: LocalDateTable_8f15e850-c0d2-4a10-9a65-37f1d5869b26.Date
+
+relationship 9aeee2b2-c658-f535-b8f9-3d699b8acdf1
+	fromColumn: FACT_Siniestros.FECHA_INCURRIDO
+	toColumn: DIM_Tiempo.Date
+
+relationship 399bf738-7d70-a0dd-0523-d8e6e1dc0cee
+	isActive: false
+	fromColumn: Cirugias.FECHA_INCURRIDO
+	toColumn: DIM_Tiempo.Date
+
+relationship 34d0bf42-3365-c1c3-f8fb-016935149bb7
+	isActive: false
+	fromColumn: Hospital.FECHA_INCURRIDO
+	toColumn: DIM_Tiempo.Date
+
+relationship 38f6703d-9495-f37f-8a31-0d07347724dc
+	isActive: false
+	fromColumn: Laboratorios.FECHA_INCURRIDO
+	toColumn: DIM_Tiempo.Date
+
+relationship 8f6d131b-2e6b-e71d-df1a-c9c8b229c336
+	isActive: false
+	fromColumn: Procedimientos.FECHA_INCURRIDO
+	toColumn: DIM_Tiempo.Date
+
+relationship eeae0a7d-43ab-1e69-109a-c1408d2374f1
+	isActive: false
+	fromColumn: Recetas.FECHA_INCURRIDO
+	toColumn: DIM_Tiempo.Date
+
